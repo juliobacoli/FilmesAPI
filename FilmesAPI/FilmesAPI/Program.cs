@@ -1,4 +1,13 @@
+using FilmesAPI.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+//builder.Services.AddDbContext<FilmesContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("FilmeConnection")));
+builder.Services.AddDbContext<FilmesContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString(""));
+});
 
 // Add services to the container.
 
