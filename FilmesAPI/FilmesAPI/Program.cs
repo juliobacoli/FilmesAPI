@@ -3,11 +3,10 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//builder.Services.AddDbContext<FilmesContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("FilmeConnection")));
-builder.Services.AddDbContext<FilmesContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString(""));
-});
+var connection = builder.Configuration.GetConnectionString("FilmeConnection");
+
+builder.Services.AddDbContext<FilmesContext>
+    (options => options.UseSqlServer(builder.Configuration.GetConnectionString(connection)));
 
 // Add services to the container.
 
