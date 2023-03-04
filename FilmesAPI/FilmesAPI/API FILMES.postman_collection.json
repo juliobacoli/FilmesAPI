@@ -1,0 +1,183 @@
+{
+	"info": {
+		"_postman_id": "c41b55e8-f8e7-4f51-a427-30abd6669b11",
+		"name": "API FILMES",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AdicionaFilme",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Titulo\": \"O senhor dos aneis\",\r\n    \"Genero\": \"Fantasia\",\r\n    \"Duracao\": 400\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7090/filme",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7090",
+					"path": [
+						"filme"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RecuperaFilmes Lista",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7090/filme",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7090",
+					"path": [
+						"filme"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recupera Filme por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7090/filme/30",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7090",
+					"path": [
+						"filme",
+						"30"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Paginando filmes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7090/filme?skip=0&take=10",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7090",
+					"path": [
+						"filme"
+					],
+					"query": [
+						{
+							"key": "skip",
+							"value": "0"
+						},
+						{
+							"key": "take",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Filme",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"titulo\": \"Segurança de Shopping\",\r\n    \"genero\": \"Comédia\",\r\n    \"duracao\": 400\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7090/filme/31",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7090",
+					"path": [
+						"filme",
+						"31"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar campos pacialmente",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "//Atualização parcial dos campos\r\n//Metodos Json Patch Document: \"add\"  \"remove\"  \"replace\"  \"move\"  \"copy\"  \"test\"\r\n[\r\n    { \r\n        \"op\": \"replace\",\r\n        \"path\": \"/titulo\",\r\n        \"value\": \"Interestelar\"\r\n    },\r\n\r\n    { \r\n        \"op\": \"replace\",\r\n        \"path\": \"/Genero\",\r\n        \"value\": \"Realidade\"\r\n    },\r\n\r\n    { \r\n        \"op\": \"replace\",\r\n        \"path\": \"/duracao\",\r\n        \"value\": 200\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7090/filme/26",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7090",
+					"path": [
+						"filme",
+						"26"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deleta Filme",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7090/filme/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7090",
+					"path": [
+						"filme",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
