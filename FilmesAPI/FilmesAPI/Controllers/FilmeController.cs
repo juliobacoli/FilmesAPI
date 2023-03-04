@@ -22,9 +22,9 @@ public class FilmeController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<Filme> RecuperaFilmes([FromQuery] int skip = 0, [FromQuery] int take = 20)
+    public IEnumerable<ReadFilmeDTO> RecuperaListaFilmes([FromQuery] int skip = 0, [FromQuery] int take = 20)
     {
-        return _context.Filmes.Skip(skip).Take(take);
+        return _mapper.Map<List<ReadFilmeDTO>>(_context.Filmes.Skip(skip).Take(take));
     }
 
     [HttpGet("{id}")]
@@ -33,6 +33,9 @@ public class FilmeController : ControllerBase
         var filme = _context.Filmes.FirstOrDefault(f => f.Id == id);
 
         if (filme == null) return NotFound();
+
+        var filmeDTO = _mapper.Map<ReadFilmeDTO>(filme);
+
         return Ok(filme);
     }
 
@@ -58,7 +61,7 @@ public class FilmeController : ControllerBase
         _mapper.Map(updateDTO, filme);
         _context.SaveChanges();
 
-        //204 - Retorno utilizado em casos de PUT/POST/PATCH/DELETE
+        //204 - Retorno utilizado em casos de PUT/POST/DELETE
         return NoContent();
     }
 
@@ -81,7 +84,20 @@ public class FilmeController : ControllerBase
         _mapper.Map(filmeParaAtualizar, filme);
         _context.SaveChanges();
 
-        //204 - Retorno utilizado em casos de PUT/POST/PATCH/DELETE
+        //204 - Retorno utilizado em casos de PUT/POST/DELETE
+        return Ok(filme);
+    }
+
+    [HttpDelete("{id}")]
+    public IActionResult DeletaFilme(int id)
+    {
+        var filme = _context.Filmes.FirstOrDefault(f => f.Id == id);
+
+        if (filme == null) return NotFound();
+
+        _context.Remove(filme);
+        _context.SaveChanges();
+
         return NoContent();
     }
 }
