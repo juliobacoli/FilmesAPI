@@ -47,4 +47,17 @@ public class FilmeController : ControllerBase
         return Ok(filme);
     }
 
+    [HttpPut("{id}")]
+    public IActionResult AtualizaFilme(int id, [FromBody] UpdateFilmeDTO updateDTO)
+    {
+        var filme = _context.Filmes.FirstOrDefault(f => f.Id == id);
+
+        if (filme == null) return NotFound();
+
+        _mapper.Map(updateDTO, filme);
+        _context.SaveChanges();
+
+        //204 - Retorno utilizado em casos de PUT/POST/DELETE
+        return NoContent();
+    }
 }
